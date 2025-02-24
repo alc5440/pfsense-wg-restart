@@ -12,9 +12,9 @@ This patch restarts the WireGuard service after the package reload in rc.newwani
 1. Click the green Add New Patch button near the top
 1. Enter whatever you want in Description
 1. Either paste the github URL for wg_restart.patch in the URL box or copy the contents of the file into the Patch Contents box
-1. Set Path Strip Count to 2
+1. Leave Path Strip Count to 2
 1. Leave Base Directory as /
-1. Uncheck Ignore Whitespace
+1. Leave Ignore Whitespace checked
 1. Check Auto Apply if desired
 1. Click Save
 1. Click Apply to the right of the patch description
