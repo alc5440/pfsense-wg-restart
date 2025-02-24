@@ -1,11 +1,11 @@
-###pfsense-wg-restart
+### pfsense-wg-restart
 
 Restart pfSense WireGuard service on WAN IP change.
-####Background
+#### Background
 
 This patch restarts the WireGuard service after the package reload in rc.newwanip. I created it to fix an issue I was having with pfSense and gateway groups where it didn't go back to the tier 1 gateway on recovery. Feel free to use it if you're having the same problem but you're on your own if you have issues.
 
-####Installation
+#### Installation
 
 1. Install the System Patches package in pfSense if you haven't already.
 1. Go to System > Patches
