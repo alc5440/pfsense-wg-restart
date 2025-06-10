@@ -10,7 +10,7 @@ Description: This patch triggers a WireGuard service restart when the WAN interf
  	log_error("{$g['product_label']} package system has detected an IP change or dynamic WAN reconnection - $oldip ->  $curwanip - Restarting packages.");
  	send_event("service reload packages");
 +	log_error("Restarting WireGuard after IP change.");
-+	mwexec_bg("/usr/local/sbin/pfSsh.php playback svc restart wireguard");
++	mwexec_bg("/usr/local/etc/rc.d/wireguard restart");
 +
  }
  
