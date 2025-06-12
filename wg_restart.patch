@@ -1,6 +1,6 @@
 Patch: Restart WireGuard on WAN IP Change
 Author: Andrew Collings
-Date: 2025-02-24
+Date: 2025-06-12
 Description: This patch triggers a WireGuard service restart when the WAN interface receives a new IP address to prevent sticking on lower-tier gateways.
 
 --- a/src/etc/rc.newwanip	2025-02-24 15:04:58
@@ -10,7 +10,7 @@ Description: This patch triggers a WireGuard service restart when the WAN interf
  	log_error("{$g['product_label']} package system has detected an IP change or dynamic WAN reconnection - $oldip ->  $curwanip - Restarting packages.");
  	send_event("service reload packages");
 +	log_error("Restarting WireGuard after IP change.");
-+	mwexec_bg("/usr/local/etc/rc.d/wireguard restart");
++	mwexec_bg("/usr/local/etc/rc.d/wireguardd restart");
 +
  }
  
