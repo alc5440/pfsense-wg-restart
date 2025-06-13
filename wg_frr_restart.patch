@@ -5,7 +5,7 @@ Description: This patch triggers a WireGuard service restart when the WAN interf
 
 --- a/src/etc/rc.newwanip	2025-02-24 15:04:58
 +++ b/src/etc/rc.newwanip	2025-02-24 15:12:05
-@@ -44,0 +44,6 @@
+@@ -44,6 +44,13 @@
  	/* restart packages */
  	log_error("{$g['product_label']} package system has detected an IP change or dynamic WAN reconnection - $oldip ->  $curwanip - Restarting packages.");
  	send_event("service reload packages");
