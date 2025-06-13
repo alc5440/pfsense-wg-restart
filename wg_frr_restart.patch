@@ -12,9 +12,9 @@ Description: This patch triggers a WireGuard service restart when the WAN interf
 +	log_error("Restarting WireGuard after IP change.");
 +	mwexec("/usr/local/etc/rc.d/wireguardd restart");
 +	log_error("Restarting FRR after WG interface change.");
-+ require_once('/usr/local/pkg/frr.inc');
-+ frr_generate_config();
-+ mwexec('/usr/local/etc/rc.d/frr.sh restart');
++	require_once('/usr/local/pkg/frr.inc');
++	frr_generate_config();
++	mwexec('/usr/local/etc/rc.d/frr.sh restart');
 +
  }
  
