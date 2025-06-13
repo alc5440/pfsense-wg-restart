@@ -1,20 +1,22 @@
-Patch: Restart WireGuard on WAN IP Change
+Patch: Restart WireGuard and FRR on WAN IP Change
 Author: Andrew Collings
 Date: 2025-06-12
 Description: This patch triggers a WireGuard service restart when the WAN interface receives a new IP address to prevent sticking on lower-tier gateways.
 
 --- a/src/etc/rc.newwanip	2025-02-24 15:04:58
 +++ b/src/etc/rc.newwanip	2025-02-24 15:12:05
-@@ -44,6 +44,13 @@
+@@ -44,6 +44,14 @@
  	/* restart packages */
  	log_error("{$g['product_label']} package system has detected an IP change or dynamic WAN reconnection - $oldip ->  $curwanip - Restarting packages.");
  	send_event("service reload packages");
 +	log_error("Restarting WireGuard after IP change.");
 +	mwexec("/usr/local/etc/rc.d/wireguardd restart");
++	sleep(5);
 +	log_error("Restarting FRR after WG interface change.");
 +	require_once('/usr/local/pkg/frr.inc');
++	$_POST['service_force_restart'] = true;
 +	frr_generate_config();
-+	mwexec('/usr/local/etc/rc.d/frr.sh restart');
++	unset($_POST['service_force_restart']);
  }
  
  /* Interface IP address has changed */
